@@ -21,6 +21,8 @@ void ofApp::setup(){
 	iterations = 1000000;			// number of times to iterate through
 									// the functions and draw a point
 	
+	initialZoomFactor = 100.0;		// blows the points out to a usable scale
+	
 	// compute some initial iterations to settle into the orbit of the attractor
 	for (int i = 0; i < initialIterations; i++) {
  
@@ -48,21 +50,11 @@ void ofApp::setup(){
 		// draw the new point
 		// glVertex2f(x, y);
 		
-		ofVec3f tempVec3f(xnew*100.0, ynew*100.0, 0.0);
+		ofVec3f tempVec3f(xnew*initialZoomFactor, ynew*initialZoomFactor, 0.0);
 		
 		strangeMesh.addVertex(tempVec3f);
 		strangeMesh.addColor(ofFloatColor(1.0, 1.0, 1.0, 0.025));
 	}
-	
-	/*
-	ofVec3f top(100.0, 50.0, 0.0);   
-    ofVec3f left(50.0, 150.0, 0.0);   
-    ofVec3f right(150.0, 150.0, 0.0);
- 
-    strangeMesh.addVertex(top);
-    strangeMesh.addVertex(left);
-    strangeMesh.addVertex(right);
-	*/ 
 }
 
 //--------------------------------------------------------------
@@ -74,7 +66,6 @@ void ofApp::update(){
 void ofApp::draw(){
 	ofBackground(0);
 	cam.begin();
-	//ofScale(0, 0, 150); // flip the y axis and zoom in a bit
 	strangeMesh.draw();
 	cam.end();
 	

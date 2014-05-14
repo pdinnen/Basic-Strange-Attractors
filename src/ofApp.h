@@ -21,5 +21,7 @@ class ofApp : public ofBaseApp{
 	
 		ofMesh strangeMesh;
 		ofEasyCam cam;
+	
+		float initialZoomFactor;
 		
 };
